@@ -69,11 +69,11 @@ class JWTProvider implements AuthenticationProviderInterface
      */
     protected function getUserFromPayload(array $payload)
     {
-        if (!isset($payload[$this->userIdentityField])) {
+        if (!isset($payload['user'][$this->userIdentityField])) {
             throw new AuthenticationException('Invalid JWT Token');
         }
 
-        return $this->userProvider->loadUserByUsername($payload[$this->userIdentityField]);
+        return $this->userProvider->loadUserByUsername($payload['user'][$this->userIdentityField]);
     }
 
     /**
