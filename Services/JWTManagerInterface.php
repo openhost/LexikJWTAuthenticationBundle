@@ -2,22 +2,22 @@
 
 namespace Lexik\Bundle\JWTAuthenticationBundle\Services;
 
+use Lexik\Bundle\JWTAuthenticationBundle\User\JWTUserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * JWTManagerInterface
  *
  * @author Nicolas Cabot <n.cabot@lexik.fr>
  */
-interface JWTManagerInterface 
+interface JWTManagerInterface
 {
     /**
      * @param UserInterface $user
      *
      * @return string
      */
-    public function create(UserInterface $user);
+    public function create(JWTUserInterface $user);
 
     /**
      * @param TokenInterface $token
