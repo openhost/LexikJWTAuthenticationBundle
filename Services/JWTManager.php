@@ -99,10 +99,9 @@ class JWTManager implements JWTManagerInterface
      * @param UserInterface $user
      * @param array         $payload
      */
-    protected function addUserIdentityToPayload(UserInterface $user, array &$payload)
+    protected function addUserIdentityToPayload(JWTUserInterface $user, array &$payload)
     {
-        $accessor = PropertyAccess::createPropertyAccessor();
-        $payload[$this->userIdentityField] = $accessor->getValue($user, $this->userIdentityField);
+        $payload['user'] = $user->getPayload();
     }
 
     /**
