@@ -30,7 +30,7 @@ class SharedKeyJWTEncoder implements JWTEncoderInterface
      */
     public function encode(array $data)
     {
-        $jws = new JWS($this->algorithm);
+        $jws = new JWS([ 'alg' => $this->algorithm ]);
         $jws->setPayload($data);
         $jws->sign($this->getSharedKey());
 
@@ -48,7 +48,7 @@ class SharedKeyJWTEncoder implements JWTEncoderInterface
             return false;
         }
 
-        if (!$jws->isValid($this->getSharedKey())) {
+        if (!$jws->verify($this->getSharedKey())) {
             return false;
         }
 

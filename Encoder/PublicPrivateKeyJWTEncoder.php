@@ -47,7 +47,7 @@ class PublicPrivateKeyJWTEncoder implements JWTEncoderInterface
      */
     public function encode(array $data)
     {
-        $jws = new JWS($this->algorithm);
+        $jws = new JWS([ 'alg' => $this->algorithm ]);
         $jws->setPayload($data);
         $jws->sign($this->getPrivateKey());
 
@@ -65,7 +65,7 @@ class PublicPrivateKeyJWTEncoder implements JWTEncoderInterface
             return false;
         }
 
-        if (!$jws->isValid($this->getPublicKey())) {
+        if (!$jws->verify($this->getPublicKey())) {
             return false;
         }
 
