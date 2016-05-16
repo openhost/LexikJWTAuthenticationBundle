@@ -24,10 +24,11 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "~2.3",
-        "symfony/framework-bundle": "~2.3",
-        "namshi/jose": "~1.1"
+        "php": ">=5.4.8",
+        "symfony/console": "~2.3|~3.0",
+        "symfony/framework-bundle": "~2.3|~3.0",
+        "symfony/security-bundle": "~2.3|~3.0",
+        "namshi/jose": "~6.0"
     },
     "autoload": {
         "psr-0": { "Lexik\\Bundle\\JWTAuthenticationBundle": "" }
