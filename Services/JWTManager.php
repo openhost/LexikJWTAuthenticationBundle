@@ -6,10 +6,10 @@ use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTDecodedEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Events;
+use Lexik\Bundle\JWTAuthenticationBundle\User\JWTUserInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 /**
  * JWTManager
@@ -59,7 +59,7 @@ class JWTManager implements JWTManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function create(UserInterface $user)
+    public function create(JWTUserInterface $user)
     {
         $payload = array(
             'exp' => time() + $this->ttl
@@ -96,8 +96,8 @@ class JWTManager implements JWTManagerInterface
      * Add user identity to payload, username by default.
      * Override this if you need to identify it by another property.
      *
-     * @param UserInterface $user
-     * @param array         $payload
+     * @param JWTUserInterface $user
+     * @param array            $payload
      */
     protected function addUserIdentityToPayload(JWTUserInterface $user, array &$payload)
     {
