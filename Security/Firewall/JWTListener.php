@@ -40,7 +40,7 @@ class JWTListener implements ListenerInterface
     protected $tokenExtractors;
 
     /**
-     * @param SecurityContextInterface       $securityoCntext
+     * @param SecurityContextInterface       $securityContext
      * @param AuthenticationManagerInterface $authenticationManager
      * @param array                          $config
      */
