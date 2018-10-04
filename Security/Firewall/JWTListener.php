@@ -22,7 +22,7 @@ class JWTListener implements ListenerInterface
     /**
      * @var TokenStorageInterface
      */
-    protected $securityContext;
+    protected $tokenStorage;
 
     /**
      * @var AuthenticationManagerInterface
@@ -40,13 +40,13 @@ class JWTListener implements ListenerInterface
     protected $tokenExtractors;
 
     /**
-     * @param SecurityContextInterface       $securityContext
+     * @param TokenStorageInterface          $tokenStorage
      * @param AuthenticationManagerInterface $authenticationManager
      * @param array                          $config
      */
     public function __construct(TokenStorageInterface $tokenStorage, AuthenticationManagerInterface $authenticationManager, array $config = array())
     {
-        $this->tokenStorage       = $tokenStorage;
+        $this->tokenStorage          = $tokenStorage;
         $this->authenticationManager = $authenticationManager;
         $this->config                = array_merge(array('throw_exceptions' => false), $config);
         $this->tokenExtractors       = array();
