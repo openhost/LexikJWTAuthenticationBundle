@@ -17,7 +17,8 @@ class AuthenticationFailureHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testOnAuthenticationFailure()
     {
-        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $dispatcher = $this->getMockBuilder('Symfony\Component\EventDispatcher\EventDispatcherInterface')
+            ->getMock();
 
         $handler = new AuthenticationFailureHandler($dispatcher);
         $response = $handler->onAuthenticationFailure($this->getRequest(), $this->getAuthenticationException());

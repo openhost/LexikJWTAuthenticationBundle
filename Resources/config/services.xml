@@ -23,7 +23,7 @@
             <argument type="service" id="event_dispatcher"/>
             <argument>%lexik_jwt_authentication.token_ttl%</argument>
             <call method="setRequest">
-                <argument type="service" id="request" on-invalid="null" strict="false" />
+                <argument type="service" id="request" on-invalid="null" />
             </call>
             <call method="setUserIdentityField">
                 <argument>%lexik_jwt_authentication.user_identity_field%</argument>
@@ -49,7 +49,7 @@
         </service>
         <!-- JWT Security Authentication Listener -->
         <service id="lexik_jwt_authentication.security.authentication.listener" class="%lexik_jwt_authentication.security.authentication.listener.class%" public="false">
-            <argument type="service" id="security.context"/>
+            <argument type="service" id="security.token_storage"/>
             <argument type="service" id="security.authentication.manager" />
             <argument /> <!-- Options -->
         </service>

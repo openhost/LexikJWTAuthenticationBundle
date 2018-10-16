@@ -47,7 +47,9 @@ class JWTProvider implements AuthenticationProviderInterface
      */
     public function authenticate(TokenInterface $token)
     {
-        if (!($payload = $this->jwtManager->decode($token))) {
+        $payload = $this->jwtManager->decode($token);
+
+        if (empty($payload)) {
             throw new AuthenticationException('Invalid JWT Token');
         }
 

@@ -12,6 +12,8 @@
 namespace Lexik\Bundle\JWTAuthenticationBundle\Tests\Stubs;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\User\JWTUserInterface;
+
 /**
  * User is the user implementation used by the in-memory user provider.
  *
@@ -19,7 +21,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-final class User implements AdvancedUserInterface
+final class User implements AdvancedUserInterface, JWTUserInterface
 {
     private $username;
     private $password;
@@ -60,6 +62,14 @@ final class User implements AdvancedUserInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPayload()
+    {
+        return [ 'username' => $this->username ];
     }
 
     /**
