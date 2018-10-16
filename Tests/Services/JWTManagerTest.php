@@ -35,7 +35,7 @@ class JWTManagerTest extends \PHPUnit_Framework_TestCase
             ->willReturn('secrettoken');
 
         $manager = new JWTManager($encoder, $dispatcher, 3600);
-        $this->assertEquals('secrettoken', $manager->create(new User('user', 'password')));
+        $this->assertEquals('secrettoken', $manager->create(new CustomUser('user', 'password')));
     }
 
     /**

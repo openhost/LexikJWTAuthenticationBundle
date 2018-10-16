@@ -77,7 +77,10 @@ class AuthenticationSuccessHandlerTest extends \PHPUnit_Framework_TestCase
     protected function getToken()
     {
         $user = $this
-            ->getMockBuilder('Symfony\Component\Security\Core\User\UserInterface')
+            ->getMockBuilder([
+                'Lexik\Bundle\JWTAuthenticationBundle\User\JWTUserInterface',
+                'Symfony\Component\Security\Core\User\UserInterface',
+            ])
             ->getMock();
 
         $user

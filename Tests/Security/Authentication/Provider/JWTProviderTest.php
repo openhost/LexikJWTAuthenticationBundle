@@ -98,7 +98,7 @@ class JWTProviderTest extends \PHPUnit_Framework_TestCase
         $userProvider->expects($this->any())->method('loadUserByUsername')->willThrowException(new UsernameNotFoundException());
 
         $jwtManager = $this->getJWTManagerMock();
-        $jwtManager->expects($this->any())->method('decode')->will($this->returnValue(array('username' => 'user')));
+        $jwtManager->expects($this->any())->method('decode')->will($this->returnValue([ 'user' => [ 'username' => 'xyzzy' ] ]));
 
         $provider = new JWTProvider($userProvider, $jwtManager);
         $provider->authenticate($jwtUserToken);
@@ -125,7 +125,7 @@ class JWTProviderTest extends \PHPUnit_Framework_TestCase
         $userProvider->expects($this->any())->method('loadUserByUsername')->will($this->returnValue($user));
 
         $jwtManager = $this->getJWTManagerMock();
-        $jwtManager->expects($this->any())->method('decode')->will($this->returnValue(array('username' => 'user')));
+        $jwtManager->expects($this->any())->method('decode')->will($this->returnValue([ 'user' => [ 'username' => 'user' ] ]));
 
         $provider = new JWTProvider($userProvider, $jwtManager);
 
@@ -137,7 +137,7 @@ class JWTProviderTest extends \PHPUnit_Framework_TestCase
         // test changing user identity field
 
         $jwtManager = $this->getJWTManagerMock();
-        $jwtManager->expects($this->any())->method('decode')->will($this->returnValue(array('uid' => 'user')));
+        $jwtManager->expects($this->any())->method('decode')->will($this->returnValue([ 'user' => [ 'uid' => 'user' ] ]));
 
         $provider = new JWTProvider($userProvider, $jwtManager);
         $provider->setUserIdentityField('uid');
